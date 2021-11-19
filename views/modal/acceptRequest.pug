@@ -1,0 +1,39 @@
+//-----------------------------------------------MODAL RESCHEDULE--------------------------------
+#acceptRequest.modal.fade(tabindex='-1' aria-labelledby='formAcceptRequest' aria-hidden='true')
+    .modal-dialog
+        .modal-content
+            .modal-header
+                h5#formAcceptRequest.modal-title Please insert a list interview time
+                button.close(type='button' data-dismiss='modal' aria-label='Close')
+                    span(aria-hidden='true') &times;
+            .modal-body
+                form.container
+                    .form-group.row
+                        label.col-lg-3.col.col-form-label(for='rescheduleName') Name:
+                        .col-lg-9.col
+                            p#rescheduleName.form-control-plaintext {{acceptedName}}
+
+                    .form-group.row
+                        label.col-lg-3.col.col-form-label(for='inputRescheduleDate') Date*:
+                        .col-lg-9.col
+                            input#inputRescheduleDate.form-control(type='date' value="" ng-model="selectedDate")
+                    .form-group.row
+                        label.col-lg-3.col.col-form-label(for='inputRescheduleTime') Time*:
+                        .col-lg-9.col
+                            input#inputRescheduleTime.form-control(type='time' ng-model="selectedTime")
+                        p.col-12 Selected time will be automatically calculated to include estimated interview duration (2hrs)
+
+                    .row
+                        .col-12
+                            button.btn.btn-secondary(type='button' ng-click="addDateTime()") + Add time into list
+                        label.col-sm-12.col-form-label(for='inputRescheduleDate') List of possible dates and times for interview:
+                        .col-12
+                            ul
+                                li(ng-repeat="i in acceptedInterview.availableTime track by $index") {{i.userInputDate}} | {{i.userInputTimeData}}
+                        .col-12
+                            p(ng-show="(!selectedDate || !selectedTime) && invalidDate").text-danger
+                                |   Invalid date and time!
+
+            .modal-footer
+                button.btn.btn-secondary(type='button' data-dismiss='modal') Close
+                button.btn.btn-primary(type='button' ng-click="submitAccept()" ng-disabled = "acceptedInterview.availableTime.length <= 0") Submit

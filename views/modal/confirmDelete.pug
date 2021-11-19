@@ -1,0 +1,14 @@
+//-----------------------------------------------MODAL RESCHEDULE--------------------------------
+#confirmDelete.modal.fade(tabindex='-1' aria-labelledby='deleteConfirmation' aria-hidden='true')
+    .modal-dialog
+        .modal-content
+            .modal-header
+                h5#deleteConfirmation.modal-title
+                    | Are you sure to
+                    span.text-danger  delete
+                    |  {{editDetails.name}}?
+                button.close(type='button' data-dismiss='modal' aria-label='Close')
+                    span(aria-hidden='true') &times;
+            .modal-footer
+                button.btn.btn-secondary(type='button' data-dismiss='modal') Cancel
+                button.btn.btn-danger(type='button' ng-click="deleteRequest()") Delete

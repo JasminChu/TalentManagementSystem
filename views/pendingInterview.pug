@@ -1,0 +1,31 @@
+extends layout
+
+block content
+    .container(ng-app="interviewAdminApp" ng-controller="interviewAdminController")
+        div.row
+            .col-lg-4.col-sm-12
+                h1 Pending Interview
+
+
+        .table-responsive.mt-3.mb-5
+            table#pendingInterviewsTable.table.table-striped.border
+                thead
+                    tr
+                        th(scope='col') Name
+                        th(scope='col') Date
+                        th(scope='col') Time
+                        th(scope='col') Department
+                        th(scope='col') Google Drive URL
+                tbody
+                    tr(ng-repeat="interview in interviews | orderBy:'-date'" repeat-done="createDataTable()")
+                        td.text-break {{interview.arrangeID.cvID.name}}
+                        td {{interview.date}}
+                        td {{interview.timeDuration}}
+                        td {{interview.arrangeID.cvID.department}}
+                        td.text-truncate.d-inline-block(style="max-width: 500px;")
+                            a(href="{{interview.arrangeID.cvID.url}}") {{interview.arrangeID.cvID.url}}
+                tfooter
+                    tr(ng-show='interviews.length<=0')
+                        td(colspan="5").text-center No items are currently available
+
+    script(src='/interview.js')

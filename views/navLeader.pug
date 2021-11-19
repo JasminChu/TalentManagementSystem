@@ -1,0 +1,19 @@
+//div.sideNav
+//    ul.list-unstyled
+//        li
+//            a(href="/leader") Pending confirmations
+//            a(href="/leader/interviews") Upcoming interview sessions
+
+nav#sidebar.leaderNavBar
+    .sidebar-header
+        h1.text-white
+            span.departmentDisplay
+            |  Leader
+        p.lead.text-white #{email}
+    ul.list-unstyled
+        li
+            a(href=`/leader/interviews/${department}`).text-white Pending Accept Requests
+        li
+            a(href="/leader/pendingInterviews").text-white Upcoming interview sessions
+        li
+            a(href="/leader/interviews/history").text-white History

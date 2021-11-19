@@ -1,0 +1,43 @@
+//---------------------------------------------MODAL---------------------------------------------
+#newInterview.modal.fade(tabindex='-1' aria-labelledby='formModal' aria-hidden='true')
+    .modal-dialog
+        .modal-content
+            .modal-header
+                h5#formModal.modal-title Create new interview request
+                button.close(type='button' data-dismiss='modal' aria-label='Close')
+                    span(aria-hidden='true') &times;
+            .modal-body
+                form(name="newInterview").container
+                    .form-group.row
+                        label.col-lg-3.col.col-form-label(for='inputName') Name*:
+                        .col-lg-9.col
+                            input#inputName.form-control(type='text' name="candidateName" ng-model="interviewRequest.name")
+                        .col
+                            p(ng-show="!interviewRequest.name && formError").text-danger
+                                |   Please enter the candidate's name
+                    .form-group.row
+                        label.col-lg-3.col.col-form-label(for='inputURL') Google Drive URL*:
+                        .col-lg-9.col
+                            input#inputURL.form-control(type='url' name="candidateURL" ng-model="interviewRequest.url")
+                        .col
+                            p(ng-show="!interviewRequest.url && formError").text-danger
+                                |   Please place the google drive URL here
+                    .form-group.row
+                        label.col-lg-3.col.col-form-label(for='inputDepartment') Department*:
+                        .col-lg-9.col
+                            select#inputDepartment.custom-select(required='' name="candidateDep" ng-model="interviewRequest.department")
+                                option(selected='' disabled='' value='') Choose...
+                                option(value='Operation') Operation
+                                option(value='IT') IT
+                                option(value='Marketing') Marketing
+                                option(value='Design') Design
+                                option(value='Finance') Finance
+                                option(value='MAD') Merchandise Acquisition
+                            .invalid-feedback
+                                | Please select a valid state.
+                        .col
+                            p(ng-show="!interviewRequest.department && formError").text-danger
+                                |   Please select a department
+            .modal-footer
+                button.btn.btn-secondary(type='button' data-dismiss='modal') Close
+                button.btn.btn-primary(type='button' ng-click="submitInterview()") Submit

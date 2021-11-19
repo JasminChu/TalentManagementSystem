@@ -1,0 +1,51 @@
+extends layout
+
+block content
+    .container(ng-app="allRequestsAdminApp" ng-controller="allRequestsAdminController")
+        include modal/editInterviewRequest
+
+        include modal/newInterview
+        .d-flex.justify-content-between.align-items-center
+            h1 All Interview Requests
+            button.btn.btn-primary(data-toggle="modal" data-target="#newInterview") + Add interview request
+
+        .btn-group(role='group' aria-label='Basic example')
+            button.btn.btn-outline-primary(ng-click="displayRequests()" ng-class="{active : activeState === undefined}") All
+            button.btn.btn-outline-success(ng-click="displayRequests('accepted')" ng-class="{active : activeState === 'accepted'}" ) Accepted
+            button.btn.btn-outline-warning(ng-click="displayRequests('pending')" ng-class="{active : activeState === 'pending'}" ) Pending
+            button.btn.btn-outline-danger(ng-click="displayRequests('rejected')" ng-class="{active : activeState === 'rejected'}") Rejected
+        p(ng-show="activeState === 'accepted'").mt-2.text-muted This section shows the requests accepted by the leader (Not confirmed interview date and time by admin)
+        p(ng-show="activeState === 'pending'").mt-2.text-muted This section shows the requests that the leader has not responded to yet
+        p(ng-show="activeState === 'rejected'").mt-2.text-muted This section shows all the requests that were rejected
+        .table-responsive
+            table#allRequestsTable.table.table-striped.border.mt-3.w-100
+                thead
+                    tr
+                        th(scope='col' ng-show="showEdit").noExport Edit
+                        th(scope='col') Name
+                        th(scope='col') Department
+                        th(scope='col').text-truncate Google Drive URL
+                        th(scope='col') Status
+                        th(scope='col' ng-show='showRejected') Reason
+
+                tbody
+                    tr(ng-repeat="i in allRequests | orderBy: '-'" repeat-done="createDataTable()")
+                        td(ng-show="showEdit").noExport
+                            button.btn.btn-outline-primary(data-toggle="modal" data-target="#editInterviewRequest" ng-show="i.status==0" ng-click="editInterviewRequest(i)")
+                                i.fa.fa-edit
+                        td.text-break {{i.name}}
+                        td {{i.department}}
+                        td.text-truncate.d-block(style="max-width: 500px;")
+                            a(href="{{i.url}}") {{i.url}}
+                        td
+                            strong(ng-show="!i.isDelete && i.status==1").text-success Accepted
+                            strong(ng-show="!i.isDelete && i.status==2").text-danger Rejected
+                            strong(ng-show="!i.isDelete && i.status==0").text-warning Pending
+
+                        td(ng-show='showRejected').text-breaek {{i.reasons}}
+                tfooter
+                    tr(ng-show='allRequests.length<=0')
+                        td(colspan="6").text-center No items are currently available
+    block externalJs
+    script(src='/allRequests.js')
+

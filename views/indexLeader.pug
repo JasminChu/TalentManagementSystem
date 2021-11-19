@@ -1,0 +1,34 @@
+extends layout
+
+block content
+    .container(ng-app="leaderApp" ng-controller="leaderController")
+        include modal/acceptRequest
+        include modal/confirmBox
+        .d-flex.align-items-center.justify-content-between.flex-wrap
+            h1 Pending Talent Requests
+            a.btn.btn-outline-primary(href='/leader/interviews/history') History
+
+        .table-responsive
+            table#pendingRequestsTable.table.table-striped.border.my-5
+                thead
+                    tr
+                        th(scope='col') Name
+                        th(scope='col') Department
+                        th(scope='col') Google drive URL
+                        th(scope='col') Action
+                tbody
+                    tr(ng-repeat="i in pendingRequests" repeat-done="createDataTable()")
+                        td.text-break {{i.name}}
+                        td {{i.department}}
+                        td.text-truncate.d-inline-block(style="max-width: 500px;")
+                            a(href="{{i.url}}") {{i.url}}
+                        td.noExport
+                            button.btn.btn-success.rounded-pill.m-1(data-toggle="modal" data-target="#acceptRequest" ng-click="acceptRequest(i)") Accept
+                            button.btn.btn-danger.rounded-pill.m-1(data-toggle="modal" data-target="#confirmBox" ng-click="rejectRequest(i)") Reject
+
+                tfooter
+                    tr(ng-show='pendingRequests.length<=0')
+                        td(colspan="4").text-center No items are currently available
+
+    block externalJs
+    script(src='/leader.js')

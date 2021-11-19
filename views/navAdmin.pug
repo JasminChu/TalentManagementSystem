@@ -1,0 +1,29 @@
+//div.sideNav
+//    ul.list-unstyled
+//        li
+//            a(href="/admin") Pending confirmations
+//            a(href="/admin/allRequests") All requests
+style.
+    #sidebar .sidebar-header {
+        background: #276678;
+    }
+
+    #sidebar ul p {
+        color: #000;
+    }
+
+    #sidebar {
+        background: #1687a7;
+        color: #000;
+    }
+nav#sidebar.adminNavBar
+    .sidebar-header
+        a(href="/admin").text-decoration-none
+            h1.text-white Admin
+        p.d-inline.mr-2.text-white #{email}
+    ul.list-unstyled
+        li
+            a.text-white(href="/admin") All requests
+        li
+            a.text-white(href="/admin/pendingConfirm") Pending confirmations
+

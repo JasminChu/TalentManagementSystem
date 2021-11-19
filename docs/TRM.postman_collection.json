@@ -1,0 +1,537 @@
+{
+	"info": {
+		"_postman_id": "0e5fdd9c-d488-49c5-90fd-61b904e37dd2",
+		"name": "TRM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET User from Db",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:2929/user/readUser",
+					"host": [
+						"localhost"
+					],
+					"port": "2929",
+					"path": [
+						"user",
+						"readUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Admin Upload Talent Cv",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "test001",
+							"type": "text"
+						},
+						{
+							"key": "department",
+							"value": "IT",
+							"type": "text"
+						},
+						{
+							"key": "url",
+							"value": "test001@gg.com",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "isDelete",
+							"value": "false",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:2929/talentCv/admin/uploadTalentCv",
+					"host": [
+						"localhost"
+					],
+					"port": "2929",
+					"path": [
+						"talentCv",
+						"admin",
+						"uploadTalentCv"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Read Talent Cv",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:2929/talentCv/readTalentCv",
+					"host": [
+						"localhost"
+					],
+					"port": "2929",
+					"path": [
+						"talentCv",
+						"readTalentCv"
+					],
+					"query": [
+						{
+							"key": "isDelete",
+							"value": "true",
+							"disabled": true
+						},
+						{
+							"key": "isAccepted",
+							"value": "false",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:2929/arrangeTime/leader/leaderSetTime",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "cvID",
+							"value": "60333055a652c918142310a5",
+							"type": "text"
+						},
+						{
+							"key": "userInputDate",
+							"value": "19 Feb 2021",
+							"type": "text"
+						},
+						{
+							"key": "userInputTimeData",
+							"value": "09:58-11:58",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:2929/arrangeTime/leader/leaderSetTime",
+					"host": [
+						"localhost"
+					],
+					"port": "2929",
+					"path": [
+						"arrangeTime",
+						"leader",
+						"leaderSetTime"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Time Set By Leader",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "localhost:2929/arrangeTime/admin/readLeaderSetTime",
+					"host": [
+						"localhost"
+					],
+					"port": "2929",
+					"path": [
+						"arrangeTime",
+						"admin",
+						"readLeaderSetTime"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Admin Set Final Confirmed Time",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"arrangeID\": \"60234d69f094ae5338e19524\",\r\n    \"availableTime\": {\r\n        \"dateTime\": \"2016-05-18T16:00:00Z\",\r\n        \"endDateTime\": \"2016-05-18T18:00:00Z\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:2929/confirmedTime/admin/adminConfirmTime",
+					"host": [
+						"localhost"
+					],
+					"port": "2929",
+					"path": [
+						"confirmedTime",
+						"admin",
+						"adminConfirmTime"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Read Final Confirmed Time Table",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "department",
+							"value": "Design",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:2929/confirmedTime/leader/readAdminConfirmTime?department=Design",
+					"host": [
+						"localhost"
+					],
+					"port": "2929",
+					"path": [
+						"confirmedTime",
+						"leader",
+						"readAdminConfirmTime"
+					],
+					"query": [
+						{
+							"key": "department",
+							"value": "Design"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Leader Rejected Specific Talent",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "cvID",
+							"value": "602377d88051434280030d00",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:2929/talentCv/leaderReject",
+					"host": [
+						"localhost"
+					],
+					"port": "2929",
+					"path": [
+						"talentCv",
+						"leaderReject"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Admin Rejected Specific Talent",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "cvID",
+							"value": "602377d88051434280030d00",
+							"type": "text"
+						},
+						{
+							"key": "adminRejectReasons",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:2929/LeaderSetTime/adminReject",
+					"host": [
+						"localhost"
+					],
+					"port": "2929",
+					"path": [
+						"LeaderSetTime",
+						"adminReject"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Leader Search Specific Date From Confirmed Time Table",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:2929/confirmedTime/leaderSearchConfirmedTime",
+					"host": [
+						"localhost"
+					],
+					"port": "2929",
+					"path": [
+						"confirmedTime",
+						"leaderSearchConfirmedTime"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Generate New User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"ky@gg.com\",\r\n    \"role\": \"leader\",\r\n    \"password\": \"ky\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:2929/api/users/generateUser",
+					"host": [
+						"localhost"
+					],
+					"port": "2929",
+					"path": [
+						"api",
+						"users",
+						"generateUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Current Route (required, only authenticated users have access)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imphc21pbjNAZ2cuY29tIiwicm9sZSI6ImxlYWRlciIsImlkIjoiNjAxN2E4NjRmMDE4Mjk0MzljOWZhNWY1IiwiZXhwIjoxNjE3MzQ3MTcyLCJpYXQiOjE2MTIxNjMxNzJ9.XYhhGdRrzYOpFfV5hbyLygT05_Wmvn7G3S1rzpJdNbA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "localhost:2929/api/users/current",
+					"host": [
+						"localhost"
+					],
+					"port": "2929",
+					"path": [
+						"api",
+						"users",
+						"current"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST User Login Route",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"jasmin@gg.com\",\r\n    \"password\": \"jasmin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:2929/api/users/login",
+					"host": [
+						"localhost"
+					],
+					"port": "2929",
+					"path": [
+						"api",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET User Logout Route",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:2929/user/logout",
+					"host": [
+						"localhost"
+					],
+					"port": "2929",
+					"path": [
+						"user",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Admin Edit Talent Cv Info",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "peppa",
+							"type": "text"
+						},
+						{
+							"key": "department",
+							"value": "peppa",
+							"type": "text"
+						},
+						{
+							"key": "url",
+							"value": "peppa",
+							"type": "text"
+						},
+						{
+							"key": "cvID",
+							"value": "601108a7a200d54300232721",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:2929/talentCv/admin/editTalentCv",
+					"host": [
+						"localhost"
+					],
+					"port": "2929",
+					"path": [
+						"talentCv",
+						"admin",
+						"editTalentCv"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "jasmin",
+							"disabled": true
+						},
+						{
+							"key": "url",
+							"value": "asdasd",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Admin Remove Specific Talent Cv (Delete Function)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:2929/talentCv/admin/reallyDelete",
+					"host": [
+						"localhost"
+					],
+					"port": "2929",
+					"path": [
+						"talentCv",
+						"admin",
+						"reallyDelete"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

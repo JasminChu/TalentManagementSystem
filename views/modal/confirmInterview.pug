@@ -1,0 +1,39 @@
+//---------------------------------------------MODAL ADMIN---------------------------------------------
+#confirmInterview.modal.fade(tabindex='-1' aria-labelledby='formModal' aria-hidden='true')
+    .modal-dialog
+        .modal-content
+            .modal-header
+                h5#formModal.modal-title Confirm Interview Time
+                button.close(type='button' data-dismiss='modal' aria-label='Close')
+                    span(aria-hidden='true') &times;
+            .modal-body
+                form.container
+                    .form-group.row
+                        label.col-sm-3.col-form-label(for='intervieweeName') Name:
+                        .col-sm-9
+                            p#intervieweeName.form-control-plaintext {{intervieweeName}}
+                    .form-group.row
+                        label.col-sm-3.col-form-label(for='intervieweeTime') Select a Time:
+                        .col-sm-9
+                            select#intervieweeTime.custom-select(required='' ng-model="confirmedTime")
+                                option(selected='' disabled='' value='') Choose...
+                                option(value="{{x.dateStr}}|{{x.timeStr}}" ng-repeat="x in intervieweeDetails.availableTime") {{x.dateStr}} | {{x.timeStr}}
+                                option(value="otherTime") Choose another time...
+                            .invalid-feedback
+                                | Please select a valid state.
+                    .form-group.row.border(ng-show="confirmedTime=='otherTime'")
+                        p.col-12 Please insert new date and time:
+                        label.col-lg-3.col.col-form-label(for='newDate') New Date:
+                        .col-lg-9.col.mb-2
+                            input#newDate.form-control(type='date' ng-model="newDateTime.newDate")
+                        label.col-lg-3.col.col-form-label(for='newStartTime') New Start Time:
+                        .col-lg-9.col.mb-2
+                            input#newStartTime.form-control(type='time' ng-model="newDateTime.newStartTime")
+                        label.col-lg-3.col.col-form-label(for='newEndTime') New End Time:
+                        .col-lg-9.col.mb-2
+                            input#newEndTime.form-control(type='time' ng-model="newDateTime.newEndTime")
+                        .col-12.text-danger(ng-show = "invalidNewDateTime")
+                            p Invalid Date and Time input!
+            .modal-footer
+                button.btn.btn-secondary(type='button' data-dismiss='modal') Close
+                button.btn.btn-primary(type='button' ng-disabled="!confirmedTime" ng-click="submitConfirm()") Submit

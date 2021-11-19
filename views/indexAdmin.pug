@@ -1,0 +1,38 @@
+extends layout
+
+block content
+    .container(ng-app="adminApp" ng-controller="adminController")
+
+        include modal/confirmInterview
+        include modal/confirmBox
+
+        h1 Pending Interview Confirmations
+        .table-responsive
+            table#adminRequestsTable.table.table-striped.border.my-3
+                thead
+                    tr
+                        th(scope='col') Name
+                        th(scope='col') Proposed Date & Time
+                        th(scope='col') Department
+                        th(scope='col').noExport Action
+                tbody
+                    tr(ng-repeat="interviewee in interviewees | orderBy: '-'" repeat-done="createDataTable()")
+                        td.text-break {{interviewee.cvID.name}}
+                        td.text-truncate.overflow-auto
+                            ul
+                                li(ng-repeat="x in interviewee.availableTime") {{x.dateStr}} | {{x.timeStr}}
+                        td {{interviewee.cvID.department}}
+                        td.noExport
+                            button.btn.btn-success.rounded-pill.m-1(data-toggle="modal" data-target="#confirmInterview" ng-click="confirmInterview(interviewee)") Confirm
+                            button.btn.btn-danger.rounded-pill.m-1(data-toggle="modal" data-target="#confirmBox" ng-click="rejectInterview(interviewee)") Reject
+
+                tfooter
+                    tr(ng-show='interviewees.length<=0')
+                        td(colspan="4").text-center No items are currently available
+
+    script(src='/admin.js')
+    script.
+        window.onload = function () {
+            document.getElementById("loading").style.display = "none"
+        }
+    block externalJs

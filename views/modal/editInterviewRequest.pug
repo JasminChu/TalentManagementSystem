@@ -1,0 +1,43 @@
+//---------------------------------------------MODAL---------------------------------------------
+include confirmDelete
+#editInterviewRequest.modal.fade(tabindex='-1' aria-labelledby='formModal' aria-hidden='true')
+    .modal-dialog
+        .modal-content
+            .modal-header
+                h5#formModal.modal-title Edit Interview Request
+                button.close(type='button' data-dismiss='modal' aria-label='Close')
+                    span(aria-hidden='true') &times;
+            .modal-body
+                form(name="newInterview").container
+                    .form-group.row
+                        label.col-lg-3.col.col-form-label(for='editName') Name*:
+                        .col-lg-9.col
+                            input#editName.form-control(type='text' name="editName" ng-model="newDetails.name" ng-value='editDetails.name')
+                    .form-group.row
+                        label.col-lg-3.col.col-form-label(for='editURL') URL*:
+                        .col-lg-9.col
+                            input#editURL.form-control(type='url' name="editURL" ng-model="newDetails.url" ng-value="editDetails.url")
+                        .col
+                            p(ng-show="!interviewRequest.url && formError").text-danger
+                                |   Please place the google drive URL here
+                    .form-group.row
+                        label.col-lg-3.col.col-form-label(for='editDepartment') Department*:
+                        .col-lg-9.col
+                            select#editDepartment.custom-select(ng-model="newDetails.department" name="editDepartment")
+                                option(selected='' disabled='' value='') {{editDetails.department}}
+                                option(value='Operation') Operation
+                                option(value='IT') IT
+                                option(value='Marketing') Marketing
+                                option(value='Design') Design
+                                option(value='Finance') Finance
+                                option(value='MAD') Merchandise Acquisition
+                            .invalid-feedback
+                                | Please select a valid state.
+                        .col
+                            p(ng-show="!interviewRequest.department && formError").text-danger
+                                |   Please select a department
+            .modal-footer.d-flex.justify-content-between.align-items-center
+                button.btn.btn-danger(type='button' data-dismiss='modal' data-toggle="modal" href="#confirmDelete") Delete
+                div
+                    button.btn.btn-secondary.m-1(type='button' data-dismiss='modal') Close
+                    button.btn.btn-primary.m-1(type='button' ng-click="submitEdit()") Submit

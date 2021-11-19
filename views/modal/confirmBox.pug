@@ -1,0 +1,17 @@
+//-----------------------------------------------MODAL RESCHEDULE--------------------------------
+#confirmBox.modal.fade(tabindex='-1' aria-labelledby='deleteConfirmation' aria-hidden='true')
+    .modal-dialog
+        .modal-content
+            .modal-header
+                h5#deleteConfirmation.modal-title Are you sure to reject {{rejectedName}}?
+                button.close(type='button' data-dismiss='modal' aria-label='Close')
+                    span(aria-hidden='true') &times;
+            .modal-body
+                p
+                    | Please include a reason as to why you reject
+                    span.text-danger *
+                    | :
+                textarea.w-100(rows='4' placeholder='Enter comments here...' ng-model="rejectReason")
+            .modal-footer
+                button.btn.btn-secondary(type='button' data-dismiss='modal') Cancel
+                button.btn.btn-danger(type='button' ng-disabled="!rejectReason" ng-click="submitReject()") Reject
